@@ -1,0 +1,91 @@
+/* ===================================================================
+   DA FRAN PRA VOCÊ — DESIGN PREMIUM & CABEÇALHO PERFEITO
+   Garante contraste máximo, legibilidade 100% e cores da marca sempre ativas
+=================================================================== */
+
+/* Cores da marca fixadas (não mudam com tema do sistema operacional) */
+:root {
+  --bg: #fff5f7 !important;
+  --surface: #ffffff !important;
+  --surface-soft: #fcebf1 !important;
+  --ink: #4b2737 !important;
+  --muted: #7c4d61 !important;
+  --line: #f3d3e0 !important;
+  --pink: #e84393 !important;
+  --pink-dark: #c2255c !important;
+  --pink-deep: #8e1b45 !important;
+  --gold: #c9a227 !important;
+  --gold-soft: #f7ecd2 !important;
+  --whats: #25d366 !important;
+  --whats-dark: #1ca851 !important;
+}
+
+/* Prevenção rigorosa de overflow horizontal e quebra de palavras */
+html, body {
+  background-color: var(--bg) !important;
+  color: var(--ink) !important;
+  overflow-x: hidden !important;
+  max-width: 100vw !important;
+  word-break: normal;
+  overflow-wrap: break-word;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Espaçamento e linha de cabeçalhos garantindo que letras não se toquem */
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1.25 !important;
+  letter-spacing: -0.02em;
+}
+
+p, span, a, button {
+  line-height: 1.6;
+}
+
+/* Cabeçalho fixo com fundo translúcido suave desde o topo (NUNCA fica branco lavado) */
+header#siteHeader {
+  background: rgba(255, 245, 247, 0.88) !important;
+  backdrop-filter: blur(14px) !important;
+  -webkit-backdrop-filter: blur(14px) !important;
+  border-bottom: 1px solid rgba(243, 211, 224, 0.75) !important;
+  box-shadow: 0 2px 12px rgba(194, 37, 92, 0.04) !important;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+header#siteHeader.scrolled {
+  background: rgba(255, 245, 247, 0.96) !important;
+  box-shadow: 0 4px 20px rgba(194, 37, 92, 0.08) !important;
+  border-bottom-color: var(--line) !important;
+}
+
+/* Links do menu no cabeçalho com alto contraste */
+#siteHeader nav a {
+  color: var(--ink) !important;
+  font-weight: 600 !important;
+  transition: color 0.2s ease, opacity 0.2s ease;
+}
+
+#siteHeader nav a:hover {
+  color: var(--pink-dark) !important;
+}
+
+/* Animações e transições */
+.reveal {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+/* Animação sutil para o aviso do WhatsApp flutuante */
+@keyframes bounceSubtle {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+.animate-bounce-subtle {
+  animation: bounceSubtle 3s ease-in-out infinite;
+}
+
+/* Efeito de rotação do chevron no FAQ */
+button[aria-expanded="true"] .lucide-chevron-down {
+  transform: rotate(180deg) !important;
+}

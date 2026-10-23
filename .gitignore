@@ -1,0 +1,47 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+.venv/
+env/
+ENV/
+*.egg-info/
+.eggs/
+
+# Django local
+db.sqlite3
+db.sqlite3-journal
+*.log
+local_settings.py
+staticfiles/
+
+# Uploads locais (as fotos do site estao em static/images)
+media/
+
+# Export gerado por export_static.py (firebase hosting)
+public/
+
+# Material de referencia local, nao faz parte do app
+referencia/
+
+# Segredos e ambiente
+.env
+.env.*
+!.env.example
+
+# Firebase local
+.firebase/
+firebase-debug.log
+firebase-debug.*.log
+*-debug.log
+
+# IDE e sistema
+.idea/
+.vscode/
+*.swp
+Thumbs.db
+Desktop.ini
+.DS_Store

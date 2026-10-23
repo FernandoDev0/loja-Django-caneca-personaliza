@@ -1,0 +1,125 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ config.nome_loja }} | Canecas Personalizadas Feitas à Mão</title>
+  <meta name="description" content="{{ config.slogan }} - Canecas personalizadas com sua foto, frase e kits artesanais. Envio para todo o Brasil com garantia contra quebra.">
+  
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>☕</text></svg>">
+  
+  <!-- Fontes Oficiais da Referência -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,500;1,600&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+  
+  <!-- CSS Base Tailwind da Referência (Responsivo e Fluido) -->
+  <link rel="stylesheet" href="{% static 'css/tailwind_ref.css' %}?v=3">
+  <!-- Estilos e Efeitos Extras (Simulador, Polimento) -->
+  <link rel="stylesheet" href="{% static 'css/style.css' %}?v=3">
+</head>
+<body class="antialiased overflow-x-hidden selection:bg-[#e84393] selection:text-white" style="background: var(--bg); color: var(--ink);">
+
+  <!-- Cabeçalho Fixo com Transição Suave -->
+  <header id="siteHeader" class="fixed inset-x-0 top-0 z-50 transition-all duration-300">
+    <div class="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 md:px-6">
+      
+      <!-- Logotipo -->
+      <a href="#sobre" class="flex items-center gap-2.5 transition-transform hover:scale-105" aria-label="{{ config.nome_loja }} — início">
+        <span class="grid h-9 w-9 place-items-center rounded-full text-white shadow-md" style="background: linear-gradient(135deg, var(--pink), var(--pink-dark));">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2v2"></path><path d="M14 2v2"></path><path d="M16 8a1 1 0 0 1 1 1v8a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V9a1 1 0 0 1 1-1h14a4 4 0 1 1 0 8h-1"></path><path d="M6 2v2"></path></svg>
+        </span>
+        <span class="font-display text-lg font-bold leading-none md:text-xl" style="color: var(--pink-dark);">{{ config.nome_loja }}</span>
+      </a>
+
+      <!-- Menu Desktop -->
+      <nav class="hidden items-center gap-7 md:flex" aria-label="Navegação principal">
+        <a href="#sobre" class="text-sm font-medium transition-colors hover:text-[#c2255c]" style="color: var(--muted);">Sobre mim</a>
+        <a href="#dia-a-dia" class="text-sm font-medium transition-colors hover:text-[#c2255c]" style="color: var(--muted);">Meu dia a dia</a>
+        <a href="#canecas" class="text-sm font-medium transition-colors hover:text-[#c2255c]" style="color: var(--muted);">Canecas</a>
+        
+        <a href="#clientes" class="text-sm font-medium transition-colors hover:text-[#c2255c]" style="color: var(--muted);">Clientes</a>
+        <a href="#como-pedir" class="text-sm font-medium transition-colors hover:text-[#c2255c]" style="color: var(--muted);">Como Pedir</a>
+        <a href="#faq" class="text-sm font-medium transition-colors hover:text-[#c2255c]" style="color: var(--muted);">Dúvidas</a>
+      </nav>
+
+      <!-- Ações do Topo -->
+      <div class="flex items-center gap-2">
+        <a href="{{ config.get_whatsapp_url }}" target="_blank" rel="noopener noreferrer" class="hidden items-center gap-1.5 rounded-full px-5 py-2.5 text-sm font-semibold text-white transition-all duration-200 hover:-translate-y-0.5 sm:inline-flex shadow-md hover:brightness-105" style="background: linear-gradient(135deg, var(--whats), var(--whats-dark)); box-shadow: rgba(37, 211, 102, 0.55) 0px 10px 24px -8px;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path></svg>
+          Pedir a minha
+        </a>
+        
+        <!-- Botão Menu Mobile -->
+        <button type="button" id="mobileMenuToggle" aria-expanded="false" aria-label="Abrir menu" class="grid h-10 w-10 place-items-center rounded-full transition-colors md:hidden" style="background: var(--surface-soft); color: var(--pink-dark);">
+          <svg id="menuIconOpen" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="20" y1="12" y2="12"></line><line x1="4" x2="20" y1="6" y2="6"></line><line x1="4" x2="20" y1="18" y2="18"></line></svg>
+          <svg id="menuIconClose" class="hidden" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Dropdown Mobile Limpo e Contido (Sem quebras de largura) -->
+    <nav id="mobileNavMenu" class="hidden mx-4 mb-3 rounded-2xl p-3 shadow-xl md:hidden transition-all duration-300" style="background: var(--surface); border: 1px solid var(--line);">
+      <div class="flex flex-col gap-1">
+        <a href="#sobre" class="mobile-nav-item rounded-xl px-4 py-2.5 text-sm font-medium transition-colors hover:bg-[#fff5f7]" style="color: var(--ink);">Sobre mim</a>
+        <a href="#dia-a-dia" class="mobile-nav-item rounded-xl px-4 py-2.5 text-sm font-medium transition-colors hover:bg-[#fff5f7]" style="color: var(--ink);">Meu dia a dia</a>
+        <a href="#canecas" class="mobile-nav-item rounded-xl px-4 py-2.5 text-sm font-medium transition-colors hover:bg-[#fff5f7]" style="color: var(--ink);">Canecas mais pedidas</a>
+        
+        <a href="#clientes" class="mobile-nav-item rounded-xl px-4 py-2.5 text-sm font-medium transition-colors hover:bg-[#fff5f7]" style="color: var(--ink);">Depoimentos & Clientes</a>
+        <a href="#como-pedir" class="mobile-nav-item rounded-xl px-4 py-2.5 text-sm font-medium transition-colors hover:bg-[#fff5f7]" style="color: var(--ink);">Como Pedir</a>
+        <a href="#faq" class="mobile-nav-item rounded-xl px-4 py-2.5 text-sm font-medium transition-colors hover:bg-[#fff5f7]" style="color: var(--ink);">Perguntas Frequentes</a>
+        <div class="mt-2 pt-2 border-t" style="border-color: var(--line);">
+          <a href="{{ config.get_whatsapp_url }}" target="_blank" rel="noopener noreferrer" class="flex w-full items-center justify-center gap-2 rounded-xl py-3 text-sm font-bold text-white shadow-md" style="background: linear-gradient(135deg, var(--whats), var(--whats-dark));">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path></svg>
+            Chamar a Fran no WhatsApp
+          </a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Conteúdo das Páginas -->
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+
+  <!-- Rodapé Oficial -->
+  <footer class="text-white" style="background: var(--pink-deep);">
+    <div class="mx-auto flex max-w-6xl flex-col items-center gap-3 px-4 py-12 text-center md:px-6">
+      <span class="grid h-11 w-11 place-items-center rounded-full bg-white/15" style="border: 1px solid rgba(255, 255, 255, 0.3);">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2v2"></path><path d="M14 2v2"></path><path d="M16 8a1 1 0 0 1 1 1v8a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V9a1 1 0 0 1 1-1h14a4 4 0 1 1 0 8h-1"></path><path d="M6 2v2"></path></svg>
+      </span>
+      <p class="font-display text-xl font-bold">{{ config.nome_loja }} — feito à mão com amor</p>
+      <p class="max-w-md text-xs leading-relaxed text-white/70">
+        {{ config.slogan }}. Canecas personalizadas artesanais, feitas uma a uma com carinho e cerâmica premium AAA+.
+      </p>
+      <div class="mt-2 flex flex-wrap items-center justify-center gap-6 text-xs text-white/80">
+        <span class="inline-flex items-center gap-1.5">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path></svg>
+          Garantia contra quebra
+        </span>
+        <span class="inline-flex items-center gap-1.5">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"></path><circle cx="17" cy="18" r="2"></circle><circle cx="7" cy="18" r="2"></circle></svg>
+          Envio para todo o Brasil
+        </span>
+      </div>
+      <p class="mt-3 text-[11px] text-white/50">&copy; {% now "Y" %} {{ config.nome_loja }}. Todos os direitos reservados.</p>
+    </div>
+  </footer>
+
+  <!-- Botão Flutuante do WhatsApp Sofisticado (Com Pulso e Efeito Magnético) -->
+  <aside class="fixed bottom-6 right-5 z-40 flex items-center gap-3">
+    <div class="hidden sm:flex items-center gap-2 rounded-full bg-white px-4 py-2 shadow-xl border border-[#f3d3e0] text-xs font-semibold text-[#4b2737] animate-bounce-subtle">
+      <span class="h-2 w-2 rounded-full bg-[#25d366] animate-pulse"></span>
+      Fran online agora no WhatsApp
+    </div>
+    <a href="{{ config.get_whatsapp_url }}" target="_blank" rel="noopener noreferrer" aria-label="Falar com a Fran no WhatsApp" class="group relative flex h-14 w-14 items-center justify-center rounded-full text-white shadow-2xl transition-all duration-300 hover:scale-110" style="background: linear-gradient(135deg, var(--whats), var(--whats-dark)); box-shadow: rgba(37, 211, 102, 0.55) 0px 10px 28px -4px;">
+      <span class="absolute -inset-1 rounded-full border border-[#25d366] opacity-75 animate-ping"></span>
+      <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" class="relative z-10"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path></svg>
+    </a>
+  </aside>
+
+  <script src="{% static 'js/main.js' %}?v=3"></script>
+</body>
+</html>
